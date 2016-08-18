@@ -1,5 +1,5 @@
 from . import controllers as Ctrl
-from aiohttp.web import Response
+from sru.support.web import Response
 import logging
 
 log = logging.getLogger(__name__)

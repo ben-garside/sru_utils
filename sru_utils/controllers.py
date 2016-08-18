@@ -1,7 +1,12 @@
-from aiohttp.web import Response
-from .helper import encode
+from sru.support.web import Response
+from sru.support.data_process import encode
+from sru.conf.settings import SRU_VERSION
+from .helper import run
 import platform
 from datetime import datetime
+import logging
+
+log = logging.getLogger(__name__)
 
 def not_found(**kw):
     msg = {
@@ -19,7 +24,7 @@ def heart_beat(**kw):
         "code": 200,
         "host": platform.node(),
         "time": datetime.now().__str__(),
-        # "version": SRU_VERSION
+        "version": SRU_VERSION
     }
 
     output = encode(msg, json=True)
@@ -42,7 +47,7 @@ def functions(**kw):
 def cmd(**kw):
     output = {}
     if "cmd" in kw.keys():
-        logger.debug(kw["cmd"])
+        log.debug(kw["cmd"])
         res = run(kw['cmd'])
         if res:
             msg = {
