@@ -8,9 +8,9 @@ Link
 * Source
   https://github.com/ben-garside/
 """
-from distutils.core import setup
+from setuptools import setup
 
-version = "0.1.1"
+version = "0.1.2"
 
 setup(
     name="sru_utils",
@@ -18,11 +18,7 @@ setup(
     author="Benjamin Garside",
     author_email="abgarside<at>gmail<dot>com",
     packages=[
-        "sru_utils",
-        "sru_utils.routes",
-        "sru_utils.conf",
-        "sru_utils.helpers",
-        "sru_utils.controllers"
+        "sru_utils"
         ],
     include_package_data=True,
     url="http://github.com/ben-garside/sru_utils/dist/{}/".format(version),
@@ -32,10 +28,8 @@ setup(
     # long_description=open("README.md").read(),
     # Dependent packages (distributions)
     dependency_links=[
-        "git+https://github.com/ben-garside/utils_shim"
     ],
     install_requires=[
-        "voluptuous",
         "aiohttp"
     ],
 )
