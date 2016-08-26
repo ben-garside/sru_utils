@@ -5,24 +5,22 @@ package:
     desc    : SRU Package for managing SRU utilities
     version : 0.1.4
     methods :
-        heart_beat :
-            route   : /utils
-            label   : Heart Beat
-            desc    : Ruturns status of SRU on server
-            params  : ~
-        functions:
-            route   : /utils
-            label   : List Functions
-            desc    : Ruturns a list of all functions available on the server
-            params  : ~
-        cmd:
-            route   : /utils
-            label   : Run CMD
-            desc    : Runs the given command on the remote server
-            params  :
-                cmd:
-                    type        : string
-                    label       : CMD
-                    desc        : Command to run
-                    required    : true
-                    input_type  : textarea
+        utils:
+            heart_beat :
+                label   : Heart Beat
+                desc    : Ruturns status of SRU on server
+                params  : ~
+            functions:
+                label   : List Functions
+                desc    : Ruturns a list of all functions available on the server
+                params  : ~
+            cmd:
+                label   : Run CMD
+                desc    : Runs the given command on the remote server
+                params  :
+                    cmd:
+                        type        : string
+                        label       : CMD
+                        desc        : Command to run
+                        required    : true
+                        input_type  : textarea
