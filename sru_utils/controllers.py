@@ -1,7 +1,7 @@
 from sru.support.web import Response
 from sru.support.data_process import encode
 from sru.conf.settings import SRU_VERSION
-from .helper import run
+from .helper import run, imports
 import platform
 from datetime import datetime
 import logging
@@ -30,19 +30,6 @@ def heart_beat(**kw):
     output = encode(msg, json=True)
     return Response(body=output, content_type="application/json")
 
-def functions(**kw):
-    msg = {
-        "message": "All available actions to this machine",
-        "code": 200,
-        "actions": {
-            "util": [
-                "heart_beat",
-                "functions"
-            ]
-        }
-    }
-    output = encode(msg, json=True)
-    return Response(body=output, content_type="application/json")
 
 def cmd(**kw):
     output = {}
