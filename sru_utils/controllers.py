@@ -10,6 +10,7 @@ log = logging.getLogger(__name__)
 
 def not_found(**kw):
     msg = {
+        "result" : [],
         "message": "invalid Action requested",
         "code": 404
     }
@@ -22,9 +23,11 @@ def heart_beat(**kw):
     msg = {
         "message": "Host is up and well",
         "code": 200,
-        "host": platform.node(),
-        "time": datetime.now().__str__(),
-        "version": SRU_VERSION
+        "result" : [{
+            "host": platform.node(),
+            "time": datetime.now().__str__(),
+            "version": SRU_VERSION
+        }]
     }
 
     output = encode(msg, json=True)
@@ -36,15 +39,19 @@ def cmd(**kw):
     if "cmd" in kw.keys():
         log.debug(kw["cmd"])
         res = run(kw['cmd'])
+        result = res.split("\r\n")  
+        # result.append(res)
         if res:
             msg = {
                 "code": 200,
-                "output": res
+                "result": result,
+                "message": "Command ran OK"
             }
         else:
             msg = {
                 "code": 500,
-                "output": "ERROR"
+                "message": "Command ran with an ERROR",
+                "result" : []
             }
         output = encode(msg, json=True)
     if "raw" in kw and kw["raw"] == True:
